@@ -29,6 +29,7 @@ CONNECTION=mysql://glance:$GLANCE_DBPASS@$GLANCE_DB/glance
 if [ ! -f /etc/glance/.complete ];then
     cp -rp /glance/* /etc/glance
     chown glance:glance /var/log/glance/
+    chown glance:glance /var/lib/glance/images/
     
     $CRUDINI --set /etc/glance/glance-api.conf database connection $CONNECTION
 
