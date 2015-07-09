@@ -24,7 +24,7 @@ fi
 
 CRUDINI='/usr/bin/crudini'
 
-CONNECTION=mysql://mysql://glance:$GLANCE_DBPASS@$GLANCE_DB/glance
+CONNECTION=mysql://glance:$GLANCE_DBPASS@$GLANCE_DB/glance
 
 if [ ! -f /etc/glance/.complete ];then
     cp -rp /glance/* /etc/glance
