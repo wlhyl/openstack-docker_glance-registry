@@ -45,7 +45,7 @@ if [ ! -f /etc/glance/.complete ];then
     $CRUDINI --set /etc/glance/glance-api.conf paste_deploy flavor keystone
     
     $CRUDINI --set /etc/glance/glance-api.conf glance_store default_store file
-    $CRUDINI --set /etc/glance/glance-api.conf filesystem_store_datadir /var/lib/glance/images/
+    $CRUDINI --set /etc/glance/glance-api.conf filesystem_store_datadirs /var/lib/glance/images/
     
     $CRUDINI --set /etc/glance/glance-api.conf DEFAULT notification_driver noop
     
