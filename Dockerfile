@@ -10,9 +10,7 @@ ENV OPENSTACK_VERSION kilo
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
-RUN apt-get dist-upgrade -y
-RUN apt-get glance-registry -y
-RUN apt-get clean
+RUN apt-get dist-upgrade -y && apt-get install glance-registry -y && apt-get clean
 
 RUN env --unset=DEBIAN_FRONTEND
 
