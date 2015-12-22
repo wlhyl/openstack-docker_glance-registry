@@ -1,17 +1,16 @@
-# image name lzh/glance-registry:kilo
-FROM registry.lzh.site:5000/lzh/openstackbase:kilo
+# image name lzh/glance-registry:liberty
+FROM 10.64.0.50:5000/lzh/openstackbase:liberty
 
 MAINTAINER Zuhui Liu penguin_tux@live.com
 
-ENV BASE_VERSION 2015-08-12
-ENV OPENSTACK_VERSION kilo
+ENV BASE_VERSION 2015-12-22
+ENV OPENSTACK_VERSION liberty
+ENV BUILD_VERSION 2015-12-22
 
-
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get update && apt-get dist-upgrade -y && apt-get install glance-registry -y && apt-get clean
-
-RUN env --unset=DEBIAN_FRONTEND
+RUN yum update -y
+RUN yum install -y openstack-glance python-glance python-glanceclient
+RUN yum clean all
+RUN rm -rf /var/cache/yum/*
 
 RUN cp -rp /etc/glance/ /glance
 RUN rm -rf /etc/glance/*
@@ -23,6 +22,6 @@ VOLUME ["/var/log/glance"]
 ADD entrypoint.sh /usr/bin/entrypoint.sh
 RUN chmod +x /usr/bin/entrypoint.sh
 
-ADD glance-registry.conf /etc/supervisor/conf.d/glance-registry.conf
+ADD glance-registry.ini /etc/supervisord.d/glance-registry.ini
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
