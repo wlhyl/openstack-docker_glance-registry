@@ -45,6 +45,7 @@ if [ ! -f /etc/glance/.complete ];then
     $CRUDINI --set /etc/glance/glance-registry.conf keystone_authtoken password $GLANCE_PASS
     
     $CRUDINI --set /etc/glance/glance-registry.conf paste_deploy flavor keystone
+    $CRUDINI --set /etc/glance/glance-registry.conf paste_deploy config_file /usr/share/glance/glance-api-dist-paste.ini
     
     $CRUDINI --set /etc/glance/glance-registry.conf DEFAULT notification_driver noop
     
